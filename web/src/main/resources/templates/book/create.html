@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="book/layout :: head">
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<nav th:replace="book/layout :: nav"></nav>
+<div class="container">
+  <p class="lead">Nowa książka</p>
+  <!--/*@thymesVar id="book" type="pl.vattenfall.app.data.entity.Book"*/-->
+  <form th:action="@{/book/create}" th:object="${book}" method="post">
+      <div class="mb-3">
+        <label>Tytuł książki</label>
+        <input class="form-control" th:field="*{title}" type="text"/>
+        <span class="text-danger" th:errors="*{title}" th:if="${#fields.hasErrors('title')}" >Błąd</span>
+      </div>
+    <div class="mb-3">
+      <label>Autor książki</label>
+      <input class="form-control" th:field="*{author}" type="text"/>
+      <span class="text-danger" th:errors="*{author}" th:if="${#fields.hasErrors('author')}" >Błąd</span>
+    </div>
+    <div class="mb-3">
+      <label>Rok Wydania</label>
+      <input class="form-control" th:field="*{editionYear}" type="text"/>
+      <span class="text-danger" th:errors="*{editionYear}" th:if="${#fields.hasErrors('editionYear')}" >Błąd</span>
+    </div>
+    <button class="btn btn-primary"type="submit">Zapisz</button>
+  </form>
+</div>
+<div th:replace="book/layout :: scripts"></div>
+</body>
+</html>

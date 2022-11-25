@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="book/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="book/layout :: nav"></nav>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Rok wydania</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="book" type="pl.vattenfall.springpart3.entity.Book"*/-->
+        <tr th:each="book: ${books}">
+            <td th:text="${book.title}">
+            </td>
+            <td th:text="${book.author}">
+            </td>
+            <td th:text="${book.editionYear}">
+            </td>
+            <td>
+                <a th:href="@{/book/update/{id}(id = ${book.id})}">Edytuj</a>
+                <a th:href="@{/book/delete/{id}(id = ${book.id})}">Usuń</a>
+                <a th:href="@{/book/details/{id}(id = ${book.id})}">Szczegóły</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="book/layout :: scripts"></div>
+</body>
+</html>
